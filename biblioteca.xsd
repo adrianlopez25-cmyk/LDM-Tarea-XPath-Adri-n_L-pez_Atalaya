@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="biblioteca">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="libro" type="libroType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="libroType">
+        <xs:sequence>
+            <xs:element name="titulo" type="xs:string"/>
+            <xs:element name="autor" type="xs:string"/>
+            <xs:element name="publicacion" type="xs:gYear"/>
+            <xs:element name="precio" type="precioType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:integer" use="required"/>
+        <xs:attribute name="categoria" type="categoriaType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="precioType">
+        <xs:simpleContent>
+            <xs:extension base="xs:decimal">
+                <xs:attribute name="moneda" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="categoriaType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="programacion"/>
+            <xs:enumeration value="sistemas"/>
+            <xs:enumeration value="desarrollo web"/>
+            <xs:enumeration value="bases de datos"/>
+            <xs:enumeration value="IA"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
